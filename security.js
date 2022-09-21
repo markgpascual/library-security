@@ -9,20 +9,6 @@ const analyzeSecurity = (data) => {
   security.trueNegative = help(data, 'trueNegative');
   security.falseNegative = help(data, 'falseNegative');
   return security;
-  // let trueP = help(data, 'truePositive');
-  // let falseP = help(data, 'falsePositive');
-  // let trueN = help(data, 'trueNegative');
-  // let falseN = help(data, 'falseNegative');
-
-  // return _.mapObject(data, (val, key) => help(data, key));
-
-  // return security =
-  // {
-  //      truePositive: trueP,
-  //      falsePositive: falseP,
-  //      trueNegative: trueN,
-  //      falseNegative: falseN
-  //    }
 };
 
 console.log(analyzeSecurity([
@@ -39,7 +25,6 @@ console.log(analyzeSecurity([
     falseNegative: 1,
   }
 ]));
-
 // console.log(help(
 //   [
 //     {
@@ -58,3 +43,13 @@ console.log(analyzeSecurity([
 // 'truePositive'));
 
 // e26
+
+var items = [
+  {price1: 100, price2: 200, price3: 150},
+  {price1: 10, price2: 50},
+  {price1: 20, price2: 20, price3: 13},
+]
+var names = _.chain(items).map(function(n) {  return _.keys(n);  }).flatten().unique().value();
+console.log(_.map(names, function(n) {
+  return  n + ': ' + eval((_.chain(items).pluck(n).compact().value()).join('+'));
+}).join(', '));
